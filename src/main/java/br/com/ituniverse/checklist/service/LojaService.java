@@ -29,23 +29,15 @@ public class LojaService {
     }
 
     public ResponseEntity<Loja> atualizar(Loja loja){
-        Optional<Loja> lojaOptional = lojaRepository.findById(loja.getId());
-        if(lojaOptional.isPresent()){
-            return ResponseEntity.status(HttpStatus.OK).body(lojaRepository.save(loja));
-        }
-        else {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Não existe loja com o id: " + loja.getId());
-        }
+        return lojaRepository.findById(loja.getId())
+            .map( lojaOpt -> ResponseEntity.status(HttpStatus.OK).body(lojaRepository.save(loja)))
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe loja com o id: " + loja.getId()));
     }
 
     public ResponseEntity<Loja> buscarPorId(String id){
-        Optional<Loja> lojaOptional = lojaRepository.findById(id);
-        if(lojaOptional.isPresent()){
-            return ResponseEntity.status(HttpStatus.OK).body(lojaOptional.get());
-        }
-        else {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe loja com o id: " + id);
-        }
+        return lojaRepository.findById(id)
+                .map(lojaOpt -> ResponseEntity.status(HttpStatus.OK).body(lojaOpt))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe loja com o id: " + id));
     }
 
     public ResponseEntity<List<Loja>> listar(){
@@ -53,13 +45,11 @@ public class LojaService {
     }
 
     public void remover(String id){
-        Optional<Loja> lojaOptional = lojaRepository.findById(id);
-        if(lojaOptional.isPresent()){
-            lojaRepository.deleteById(id);
-        }
-        else{
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe loja com o id: " + id);
-        }
+        lojaRepository.findById(id)
+            .ifPresentOrElse(
+                lojaOpt -> lojaRepository.delete(lojaOpt),
+                () -> {throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe loja com o id: " + id);}
+            );
     }
 
 }
