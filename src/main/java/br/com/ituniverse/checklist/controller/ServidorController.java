@@ -24,7 +24,7 @@ public class ServidorController {
         return servidorService.criar(servidor);
     }
 
-    @PostMapping
+    @PostMapping("/lista")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<List<Servidor>> criarPorLista(@RequestBody List<Servidor> listaServidores) {
         return servidorService.criarPorLista(listaServidores);
