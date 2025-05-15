@@ -21,6 +21,8 @@ public class Pdv {
     private String tag;
     private String frequencia;
     private String observacao;
+    private String antes;
+    private String depois;
 
     @ManyToOne(cascade = CascadeType.REMOVE)
     private Loja loja;

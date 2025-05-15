@@ -37,6 +37,10 @@ public class PdvService {
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe loja com esse id: " + pdv.getLoja().getId()));
     }
 
+    public ResponseEntity<List<Pdv>> criarPorLista(List<Pdv> listaPdvs){
+        return ResponseEntity.status(HttpStatus.CREATED).body(pdvRepository.saveAll(listaPdvs));
+    }
+
     public ResponseEntity<Pdv> atualizar(Pdv pdv) {
         return lojaRepository.findById(pdv.getLoja().getId())
             .map(lojaOpt -> pdvRepository.findById(pdv.getId())
@@ -52,11 +56,11 @@ public class PdvService {
           .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe PDV com esse id: " + id));
     }
 
-    public ResponseEntity<List<Pdv>> buscarTodos() {
+    public ResponseEntity<List<Pdv>> listar() {
       return ResponseEntity.status(HttpStatus.OK).body(pdvRepository.findAll());
     }
 
-    public void excluir(String id) {
+    public void deletar(String id) {
         pdvRepository.findById(id).ifPresentOrElse(
             pdvOpt -> pdvRepository.delete(pdvOpt),
             () -> { throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe PDV com esse id: " + id); }

@@ -28,6 +28,10 @@ public class LojaService {
         }
     }
 
+    public ResponseEntity<List<Loja>> criarPorLista(List<Loja> listaLojas){
+        return ResponseEntity.status(HttpStatus.CREATED).body(lojaRepository.saveAll(listaLojas));
+    }
+
     public ResponseEntity<Loja> atualizar(Loja loja){
         return lojaRepository.findById(loja.getId())
             .map( lojaOpt -> ResponseEntity.status(HttpStatus.OK).body(lojaRepository.save(loja)))
@@ -44,7 +48,7 @@ public class LojaService {
         return ResponseEntity.status(HttpStatus.OK).body(lojaRepository.findAll());
     }
 
-    public void remover(String id){
+    public void deletar(String id){
         lojaRepository.findById(id)
             .ifPresentOrElse(
                 lojaOpt -> lojaRepository.delete(lojaOpt),

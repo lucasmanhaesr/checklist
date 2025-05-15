@@ -22,6 +22,8 @@ public class Servidor {
     private String tamanhoMemoria;
     private String frequencia;
     private String observacao;
+    private String antes;
+    private String depois;
 
     @OneToOne(cascade = CascadeType.REMOVE)
     private Loja loja;

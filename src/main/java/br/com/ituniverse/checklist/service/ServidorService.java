@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +36,10 @@ public class ServidorService {
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe loja com esse id: " + servidor.getId()));
     }
 
+    public ResponseEntity<List<Servidor>> criarPorLista(List<Servidor> listaServidores){
+        return ResponseEntity.status(HttpStatus.CREATED).body(servidorRepository.saveAll(listaServidores));
+    }
+
     public ResponseEntity<Servidor> atualizar(Servidor servidor) {
         return lojaRepository.findById(servidor.getLoja().getId())
             .map(
@@ -51,11 +56,11 @@ public class ServidorService {
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe Servidor com esse id: " + id));
     }
 
-    public ResponseEntity<List<Servidor>> buscarTodos(){
+    public ResponseEntity<List<Servidor>> listar(){
         return ResponseEntity.status(HttpStatus.OK).body(servidorRepository.findAll());
     }
 
-    public void excluir(String id) {
+    public void deletar(String id) {
         servidorRepository.findById(id).ifPresentOrElse(
             servidorOpt -> servidorRepository.delete(servidorOpt),
             () -> { throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Não existe servidor com esse id: " + id); }
