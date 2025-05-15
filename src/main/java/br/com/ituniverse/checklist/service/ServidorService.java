@@ -33,7 +33,7 @@ public class ServidorService {
                     return ResponseEntity.status(HttpStatus.CREATED).body(servidorRepository.save(servidor));
                 }
             })
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe loja com esse id: " + servidor.getId()));
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe loja com esse id: " + servidor.getLoja().getId()));
     }
 
     public ResponseEntity<List<Servidor>> criarPorLista(List<Servidor> listaServidores){

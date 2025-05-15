@@ -5,9 +5,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import lombok.Data;
 
-@Data
 @Entity(name = "tb_checklist_pdv")
 public class Pdv {
 
@@ -48,6 +46,78 @@ public class Pdv {
         this.observacao = observacao;
         this.antes = antes;
         this.depois = depois;
+        this.loja = loja;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getFabricante() {
+        return fabricante;
+    }
+
+    public void setFabricante(String fabricante) {
+        this.fabricante = fabricante;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getFrequencia() {
+        return frequencia;
+    }
+
+    public void setFrequencia(String frequencia) {
+        this.frequencia = frequencia;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
+    public String getAntes() {
+        return antes;
+    }
+
+    public void setAntes(String antes) {
+        this.antes = antes;
+    }
+
+    public String getDepois() {
+        return depois;
+    }
+
+    public void setDepois(String depois) {
+        this.depois = depois;
+    }
+
+    public Loja getLoja() {
+        return loja;
+    }
+
+    public void setLoja(Loja loja) {
         this.loja = loja;
     }
 }
