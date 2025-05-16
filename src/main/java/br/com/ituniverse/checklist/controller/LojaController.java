@@ -38,14 +38,20 @@ public class LojaController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Loja> buscarPorId(@PathVariable("id") String id) {
-        return lojaService.buscarPorId(id);
+    public ResponseEntity<Loja> buscarLojaPorId(@PathVariable("id") String id) {
+        return lojaService.buscarLojaPorId(id);
+    }
+
+    @GetMapping("/uf/{uf}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<List<Loja>> buscarLojaPorUf(@PathVariable("uf") String uf) {
+        return lojaService.buscarLojasPorUf(uf);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<Loja>> listar(){
-        return lojaService.listar();
+    public ResponseEntity<List<Loja>> listarLojas(){
+        return lojaService.listarLojas();
     }
 
     @DeleteMapping("/{id}")

@@ -37,14 +37,20 @@ public class PdvController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Pdv> buscarPorId(@PathVariable("id") String id) {
-        return pdvService.buscarPorId(id);
+    public ResponseEntity<Pdv> buscarPdvPorId(@PathVariable("id") String id) {
+        return pdvService.buscarPdvPorId(id);
+    }
+
+    @GetMapping("/loja/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<List<Pdv>> buscarPdvPorLoja(@PathVariable("id") String id) {
+        return pdvService.listarPdvsPorLoja(id);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Pdv>> listar() {
-        return pdvService.listar();
+        return pdvService.listarPdvs();
     }
 
     @DeleteMapping("/{id}")

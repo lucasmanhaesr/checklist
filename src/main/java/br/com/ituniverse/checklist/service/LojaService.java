@@ -38,13 +38,17 @@ public class LojaService {
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe loja com o id: " + loja.getId()));
     }
 
-    public ResponseEntity<Loja> buscarPorId(String id){
+    public ResponseEntity<Loja> buscarLojaPorId(String id){
         return lojaRepository.findById(id)
                 .map(lojaOpt -> ResponseEntity.status(HttpStatus.OK).body(lojaOpt))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe loja com o id: " + id));
     }
 
-    public ResponseEntity<List<Loja>> listar(){
+    public ResponseEntity<List<Loja>> buscarLojasPorUf(String uf){
+        return ResponseEntity.status(HttpStatus.OK).body(lojaRepository.findLojaByUf(uf));
+    }
+
+    public ResponseEntity<List<Loja>> listarLojas(){
         return ResponseEntity.status(HttpStatus.OK).body(lojaRepository.findAll());
     }
 

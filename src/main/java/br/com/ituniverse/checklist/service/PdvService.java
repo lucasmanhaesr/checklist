@@ -50,13 +50,19 @@ public class PdvService {
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe loja com esse id: " + pdv.getLoja().getId()));
     }
 
-    public ResponseEntity<Pdv> buscarPorId(String id){
+    public ResponseEntity<Pdv> buscarPdvPorId(String id){
         return pdvRepository.findById(id)
           .map( pdvOpt -> ResponseEntity.status(HttpStatus.OK).body(pdvOpt))
           .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe PDV com esse id: " + id));
     }
 
-    public ResponseEntity<List<Pdv>> listar() {
+    public ResponseEntity<List<Pdv>> listarPdvsPorLoja(String idLoja) {
+        return lojaRepository.findById(idLoja)
+            .map(lojaOpt -> ResponseEntity.status(HttpStatus.OK).body(pdvRepository.findPdvByLoja(lojaOpt)))
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe loja com esse id: " + idLoja));
+    }
+
+    public ResponseEntity<List<Pdv>> listarPdvs() {
       return ResponseEntity.status(HttpStatus.OK).body(pdvRepository.findAll());
     }
 

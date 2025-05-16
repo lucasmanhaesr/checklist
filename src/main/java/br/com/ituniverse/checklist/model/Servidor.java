@@ -6,6 +6,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity(name = "tb_checklist_servidor")
 public class Servidor {
 
@@ -17,6 +20,12 @@ public class Servidor {
     private String tamanhoMemoria;
     private String frequencia;
     private String observacao;
+
+    private boolean existe; //Existe PDV ?
+    private String status;
+    private String tecnico;
+    private LocalDate dataTroca;
+    private String intercorrencia;
     private String antes;
     private String depois;
 
@@ -26,7 +35,7 @@ public class Servidor {
 
     public Servidor(){}
 
-    public Servidor(String id, String fabricante, String modelo, String tag, String tamanhoMemoria, String frequencia, String observacao, String antes, String depois) {
+    public Servidor(String id, String fabricante, String modelo, String tag, String tamanhoMemoria, String frequencia, String observacao, boolean existe, String status, String tecnico, LocalDate dataTroca, String intercorrencia, String antes, String depois) {
         this.id = id;
         this.fabricante = fabricante;
         this.modelo = modelo;
@@ -34,11 +43,16 @@ public class Servidor {
         this.tamanhoMemoria = tamanhoMemoria;
         this.frequencia = frequencia;
         this.observacao = observacao;
+        this.existe = existe;
+        this.status = status;
+        this.tecnico = tecnico;
+        this.dataTroca = dataTroca;
+        this.intercorrencia = intercorrencia;
         this.antes = antes;
         this.depois = depois;
     }
 
-    public Servidor(String id, String fabricante, String modelo, String tag, String tamanhoMemoria, String frequencia, String observacao, String antes, String depois, Loja loja) {
+    public Servidor(String id, String fabricante, String modelo, String tag, String tamanhoMemoria, String frequencia, String observacao, boolean existe, String status, String tecnico, LocalDate dataTroca, String intercorrencia, String antes, String depois, Loja loja) {
         this.id = id;
         this.fabricante = fabricante;
         this.modelo = modelo;
@@ -46,6 +60,11 @@ public class Servidor {
         this.tamanhoMemoria = tamanhoMemoria;
         this.frequencia = frequencia;
         this.observacao = observacao;
+        this.existe = existe;
+        this.status = status;
+        this.tecnico = tecnico;
+        this.dataTroca = dataTroca;
+        this.intercorrencia = intercorrencia;
         this.antes = antes;
         this.depois = depois;
         this.loja = loja;
@@ -105,6 +124,46 @@ public class Servidor {
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+
+    public boolean isExiste() {
+        return existe;
+    }
+
+    public void setExiste(boolean existe) {
+        this.existe = existe;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getTecnico() {
+        return tecnico;
+    }
+
+    public void setTecnico(String tecnico) {
+        this.tecnico = tecnico;
+    }
+
+    public LocalDate getDataTroca() {
+        return dataTroca;
+    }
+
+    public void setDataTroca(LocalDate dataTroca) {
+        this.dataTroca = dataTroca;
+    }
+
+    public String getIntercorrencia() {
+        return intercorrencia;
+    }
+
+    public void setIntercorrencia(String intercorrencia) {
+        this.intercorrencia = intercorrencia;
     }
 
     public String getAntes() {

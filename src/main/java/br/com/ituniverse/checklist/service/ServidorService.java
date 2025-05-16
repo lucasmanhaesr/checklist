@@ -50,7 +50,7 @@ public class ServidorService {
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe loja com esse id: " + servidor.getLoja().getId()));
     }
 
-    public ResponseEntity<Servidor> buscarPorId(String id){
+    public ResponseEntity<Servidor> buscarServidorPorId(String id){
         return servidorRepository.findById(id)
             .map(servidorOpt -> ResponseEntity.status(HttpStatus.OK).body(servidorOpt))
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe Servidor com esse id: " + id));

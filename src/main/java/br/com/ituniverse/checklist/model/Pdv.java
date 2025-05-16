@@ -5,6 +5,8 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity(name = "tb_checklist_pdv")
 public class Pdv {
@@ -16,6 +18,12 @@ public class Pdv {
     private String tag;
     private String frequencia;
     private String observacao;
+
+    private boolean existe; //Existe PDV ?
+    private String status;
+    private String tecnico;
+    private LocalDate dataTroca;
+    private String intercorrencia;
     private String antes;
     private String depois;
 
@@ -26,24 +34,34 @@ public class Pdv {
 
     public Pdv(){}
 
-    public Pdv(String id, String fabricante, String modelo, String tag, String frequencia, String observacao, String antes, String depois) {
+    public Pdv(String id, String fabricante, String modelo, String tag, String frequencia, String observacao, boolean existe, String status, String tecnico, LocalDate dataTroca, String intercorrencia, String antes, String depois) {
         this.id = id;
         this.fabricante = fabricante;
         this.modelo = modelo;
         this.tag = tag;
         this.frequencia = frequencia;
         this.observacao = observacao;
+        this.existe = existe;
+        this.status = status;
+        this.tecnico = tecnico;
+        this.dataTroca = dataTroca;
+        this.intercorrencia = intercorrencia;
         this.antes = antes;
         this.depois = depois;
     }
 
-    public Pdv(String id, String fabricante, String modelo, String tag, String frequencia, String observacao, String antes, String depois, Loja loja) {
+    public Pdv(String id, String fabricante, String modelo, String tag, String frequencia, String observacao, boolean existe, String status, String tecnico, LocalDate dataTroca, String intercorrencia, String antes, String depois, Loja loja) {
         this.id = id;
         this.fabricante = fabricante;
         this.modelo = modelo;
         this.tag = tag;
         this.frequencia = frequencia;
         this.observacao = observacao;
+        this.existe = existe;
+        this.status = status;
+        this.tecnico = tecnico;
+        this.dataTroca = dataTroca;
+        this.intercorrencia = intercorrencia;
         this.antes = antes;
         this.depois = depois;
         this.loja = loja;
@@ -95,6 +113,46 @@ public class Pdv {
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+
+    public boolean isExiste() {
+        return existe;
+    }
+
+    public void setExiste(boolean existe) {
+        this.existe = existe;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getTecnico() {
+        return tecnico;
+    }
+
+    public void setTecnico(String tecnico) {
+        this.tecnico = tecnico;
+    }
+
+    public LocalDate getDataTroca() {
+        return dataTroca;
+    }
+
+    public void setDataTroca(LocalDate dataTroca) {
+        this.dataTroca = dataTroca;
+    }
+
+    public String getIntercorrencia() {
+        return intercorrencia;
+    }
+
+    public void setIntercorrencia(String intercorrencia) {
+        this.intercorrencia = intercorrencia;
     }
 
     public String getAntes() {

@@ -38,13 +38,13 @@ public class ServidorController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Servidor> buscarPorId(@PathVariable String id) {
-        return servidorService.buscarPorId(id);
+    public ResponseEntity<Servidor> buscarServidorPorId(@PathVariable String id) {
+        return servidorService.buscarServidorPorId(id);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<Servidor>> listar(){
+    public ResponseEntity<List<Servidor>> listarServidores(){
         return servidorService.listar();
     }
 

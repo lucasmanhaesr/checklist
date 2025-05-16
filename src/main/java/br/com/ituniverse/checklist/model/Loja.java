@@ -2,8 +2,6 @@ package br.com.ituniverse.checklist.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity(name = "tb_checklist_loja")
@@ -14,11 +12,6 @@ public class Loja {
     private Integer quantidadePdvs;
     private Integer diaria;
     private String uf;
-    private String status;
-    private String tecnico;
-    private LocalDate dataTroca;
-    private LocalDateTime horarioInicio;
-    private LocalDateTime horarioTermino;
 
     @JsonIgnoreProperties("loja")
     @OneToMany(mappedBy = "loja", cascade = CascadeType.REMOVE)
@@ -30,28 +23,18 @@ public class Loja {
 
     public Loja() {}
 
-    public Loja(String id, Integer quantidadePdvs, Integer diaria, String uf, String status, String tecnico, LocalDate dataTroca, LocalDateTime horarioInicio, LocalDateTime horarioTermino) {
+    public Loja(String id, Integer quantidadePdvs, Integer diaria, String uf) {
         this.id = id;
         this.quantidadePdvs = quantidadePdvs;
         this.diaria = diaria;
         this.uf = uf;
-        this.status = status;
-        this.tecnico = tecnico;
-        this.dataTroca = dataTroca;
-        this.horarioInicio = horarioInicio;
-        this.horarioTermino = horarioTermino;
     }
 
-    public Loja(String id, Integer quantidadePdvs, Integer diaria, String uf, String status, String tecnico, LocalDate dataTroca, LocalDateTime horarioInicio, LocalDateTime horarioTermino, List<Pdv> pdvs, Servidor servidor) {
+    public Loja(String id, Integer quantidadePdvs, Integer diaria, String uf, List<Pdv> pdvs, Servidor servidor) {
         this.id = id;
         this.quantidadePdvs = quantidadePdvs;
         this.diaria = diaria;
         this.uf = uf;
-        this.status = status;
-        this.tecnico = tecnico;
-        this.dataTroca = dataTroca;
-        this.horarioInicio = horarioInicio;
-        this.horarioTermino = horarioTermino;
         this.pdvs = pdvs;
         this.servidor = servidor;
     }
@@ -86,46 +69,6 @@ public class Loja {
 
     public void setUf(String uf) {
         this.uf = uf;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getTecnico() {
-        return tecnico;
-    }
-
-    public void setTecnico(String tecnico) {
-        this.tecnico = tecnico;
-    }
-
-    public LocalDate getDataTroca() {
-        return dataTroca;
-    }
-
-    public void setDataTroca(LocalDate dataTroca) {
-        this.dataTroca = dataTroca;
-    }
-
-    public LocalDateTime getHorarioInicio() {
-        return horarioInicio;
-    }
-
-    public void setHorarioInicio(LocalDateTime horarioInicio) {
-        this.horarioInicio = horarioInicio;
-    }
-
-    public LocalDateTime getHorarioTermino() {
-        return horarioTermino;
-    }
-
-    public void setHorarioTermino(LocalDateTime horarioTermino) {
-        this.horarioTermino = horarioTermino;
     }
 
     public List<Pdv> getPdvs() {
