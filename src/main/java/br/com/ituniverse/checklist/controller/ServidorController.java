@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/servidor")
-@CrossOrigin(allowedHeaders = "*", origins = "*")
+@CrossOrigin(allowedHeaders = "*", origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class ServidorController {
 
     private final ServidorService servidorService;

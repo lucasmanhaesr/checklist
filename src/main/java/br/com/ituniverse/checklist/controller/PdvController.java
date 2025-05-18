@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/pdv")
-@CrossOrigin(allowedHeaders = "*", origins = "*")
+@CrossOrigin(allowedHeaders = "*", origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class PdvController {
 
     private final PdvService pdvService;
