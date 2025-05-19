@@ -5,9 +5,8 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity(name = "tb_checklist_servidor")
 public class Servidor {
@@ -26,8 +25,8 @@ public class Servidor {
     private String tecnico;
     private LocalDate dataTroca;
     private String intercorrencia;
-    private String antes;
-    private String depois;
+    private List<String> antes;
+    private List<String> depois;
 
     @JsonIgnoreProperties({"servidor"})
     @OneToOne(cascade = CascadeType.REMOVE)
@@ -35,24 +34,7 @@ public class Servidor {
 
     public Servidor(){}
 
-    public Servidor(String id, String fabricante, String modelo, String tag, String tamanhoMemoria, String frequencia, String observacao, boolean existe, String status, String tecnico, LocalDate dataTroca, String intercorrencia, String antes, String depois) {
-        this.id = id;
-        this.fabricante = fabricante;
-        this.modelo = modelo;
-        this.tag = tag;
-        this.tamanhoMemoria = tamanhoMemoria;
-        this.frequencia = frequencia;
-        this.observacao = observacao;
-        this.existe = existe;
-        this.status = status;
-        this.tecnico = tecnico;
-        this.dataTroca = dataTroca;
-        this.intercorrencia = intercorrencia;
-        this.antes = antes;
-        this.depois = depois;
-    }
-
-    public Servidor(String id, String fabricante, String modelo, String tag, String tamanhoMemoria, String frequencia, String observacao, boolean existe, String status, String tecnico, LocalDate dataTroca, String intercorrencia, String antes, String depois, Loja loja) {
+    public Servidor(String id, String fabricante, String modelo, String tag, String tamanhoMemoria, String frequencia, String observacao, boolean existe, String status, String tecnico, LocalDate dataTroca, String intercorrencia, List<String> antes, List<String> depois, Loja loja) {
         this.id = id;
         this.fabricante = fabricante;
         this.modelo = modelo;
@@ -166,19 +148,19 @@ public class Servidor {
         this.intercorrencia = intercorrencia;
     }
 
-    public String getAntes() {
+    public List<String> getAntes() {
         return antes;
     }
 
-    public void setAntes(String antes) {
+    public void setAntes(List<String> antes) {
         this.antes = antes;
     }
 
-    public String getDepois() {
+    public List<String> getDepois() {
         return depois;
     }
 
-    public void setDepois(String depois) {
+    public void setDepois(List<String> depois) {
         this.depois = depois;
     }
 

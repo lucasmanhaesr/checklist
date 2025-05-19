@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity(name = "tb_checklist_pdv")
 public class Pdv {
@@ -24,8 +24,8 @@ public class Pdv {
     private String tecnico;
     private LocalDate dataTroca;
     private String intercorrencia;
-    private String antes;
-    private String depois;
+    private List<String> antes;
+    private List<String> depois;
 
     @JsonIgnoreProperties("pdvs")
     @ManyToOne(cascade = CascadeType.REMOVE)
@@ -34,23 +34,7 @@ public class Pdv {
 
     public Pdv(){}
 
-    public Pdv(String id, String fabricante, String modelo, String tag, String frequencia, String observacao, boolean existe, String status, String tecnico, LocalDate dataTroca, String intercorrencia, String antes, String depois) {
-        this.id = id;
-        this.fabricante = fabricante;
-        this.modelo = modelo;
-        this.tag = tag;
-        this.frequencia = frequencia;
-        this.observacao = observacao;
-        this.existe = existe;
-        this.status = status;
-        this.tecnico = tecnico;
-        this.dataTroca = dataTroca;
-        this.intercorrencia = intercorrencia;
-        this.antes = antes;
-        this.depois = depois;
-    }
-
-    public Pdv(String id, String fabricante, String modelo, String tag, String frequencia, String observacao, boolean existe, String status, String tecnico, LocalDate dataTroca, String intercorrencia, String antes, String depois, Loja loja) {
+    public Pdv(String id, String fabricante, String modelo, String tag, String frequencia, String observacao, boolean existe, String status, String tecnico, LocalDate dataTroca, String intercorrencia, List<String> antes, List<String> depois, Loja loja) {
         this.id = id;
         this.fabricante = fabricante;
         this.modelo = modelo;
@@ -155,19 +139,19 @@ public class Pdv {
         this.intercorrencia = intercorrencia;
     }
 
-    public String getAntes() {
+    public List<String> getAntes() {
         return antes;
     }
 
-    public void setAntes(String antes) {
+    public void setAntes(List<String> antes) {
         this.antes = antes;
     }
 
-    public String getDepois() {
+    public List<String> getDepois() {
         return depois;
     }
 
-    public void setDepois(String depois) {
+    public void setDepois(List<String> depois) {
         this.depois = depois;
     }
 
