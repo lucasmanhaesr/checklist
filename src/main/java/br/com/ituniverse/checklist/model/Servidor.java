@@ -18,7 +18,6 @@ public class Servidor {
     private String tag;
     private String tamanhoMemoria;
     private String frequencia;
-    private String observacao;
 
     private boolean existe; //Existe PDV ?
     private String status;
@@ -34,14 +33,13 @@ public class Servidor {
 
     public Servidor(){}
 
-    public Servidor(String id, String fabricante, String modelo, String tag, String tamanhoMemoria, String frequencia, String observacao, boolean existe, String status, String tecnico, LocalDate dataTroca, String intercorrencia, List<String> antes, List<String> depois, Loja loja) {
+    public Servidor(String id, String fabricante, String modelo, String tag, String tamanhoMemoria, String frequencia, boolean existe, String status, String tecnico, LocalDate dataTroca, String intercorrencia, List<String> antes, List<String> depois, Loja loja) {
         this.id = id;
         this.fabricante = fabricante;
         this.modelo = modelo;
         this.tag = tag;
         this.tamanhoMemoria = tamanhoMemoria;
         this.frequencia = frequencia;
-        this.observacao = observacao;
         this.existe = existe;
         this.status = status;
         this.tecnico = tecnico;
@@ -98,14 +96,6 @@ public class Servidor {
 
     public void setFrequencia(String frequencia) {
         this.frequencia = frequencia;
-    }
-
-    public String getObservacao() {
-        return observacao;
-    }
-
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
     }
 
     public boolean isExiste() {
