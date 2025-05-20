@@ -1,5 +1,6 @@
 package br.com.ituniverse.checklist.service;
 
+import br.com.ituniverse.checklist.dto.CriarServidorDto;
 import br.com.ituniverse.checklist.model.Servidor;
 import br.com.ituniverse.checklist.repository.LojaRepository;
 import br.com.ituniverse.checklist.repository.ServidorRepository;
@@ -7,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -22,18 +22,18 @@ public class ServidorService {
         this.lojaRepository = lojaRepository;
     }
 
-    public ResponseEntity<Servidor> criar(Servidor servidor) {
-        return lojaRepository.findById(servidor.getLoja().getId())
+    public ResponseEntity<Servidor> criar(CriarServidorDto criarServidorDto) {
+        return lojaRepository.findById(criarServidorDto.loja().getId())
             .map( lojaOpt -> {
-                Optional<Servidor> servidorOpt = servidorRepository.findById(servidor.getId());
+                Optional<Servidor> servidorOpt = servidorRepository.findById(criarServidorDto.id());
                 if (servidorOpt.isPresent()) {
-                    throw new ResponseStatusException(HttpStatus.CONFLICT, "Já existe servidor com esse id: " + servidor.getId());
+                    throw new ResponseStatusException(HttpStatus.CONFLICT, "Já existe servidor com esse id: " + criarServidorDto.id());
                 }
                 else{
-                    return ResponseEntity.status(HttpStatus.CREATED).body(servidorRepository.save(servidor));
+                    return ResponseEntity.status(HttpStatus.CREATED).body(servidorRepository.save(new Servidor(criarServidorDto.id(), criarServidorDto.fabricante(), criarServidorDto.modelo(), criarServidorDto.tag(), criarServidorDto.tamanhoMemoria(), criarServidorDto.frequencia(), lojaOpt)));
                 }
             })
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe loja com esse id: " + servidor.getLoja().getId()));
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não existe loja com esse id: " + criarServidorDto.loja().getId()));
     }
 
     public ResponseEntity<List<Servidor>> criarPorLista(List<Servidor> listaServidores){

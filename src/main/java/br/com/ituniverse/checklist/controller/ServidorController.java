@@ -1,5 +1,6 @@
 package br.com.ituniverse.checklist.controller;
 
+import br.com.ituniverse.checklist.dto.CriarServidorDto;
 import br.com.ituniverse.checklist.model.Servidor;
 import br.com.ituniverse.checklist.service.ServidorService;
 import org.springframework.http.HttpStatus;
@@ -20,8 +21,8 @@ public class ServidorController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Servidor> criar(@RequestBody Servidor servidor) {
-        return servidorService.criar(servidor);
+    public ResponseEntity<Servidor> criar(@RequestBody CriarServidorDto criarServidorDto) {
+        return servidorService.criar(criarServidorDto);
     }
 
     @PostMapping("/lista")

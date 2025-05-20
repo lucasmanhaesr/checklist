@@ -33,6 +33,16 @@ public class Servidor {
 
     public Servidor(){}
 
+    public Servidor(String id, String fabricante, String modelo, String tag, String tamanhoMemoria, String frequencia, Loja loja) {
+        this.id = id;
+        this.fabricante = fabricante;
+        this.modelo = modelo;
+        this.tag = tag;
+        this.tamanhoMemoria = tamanhoMemoria;
+        this.frequencia = frequencia;
+        this.loja = loja;
+    }
+
     public Servidor(String id, String fabricante, String modelo, String tag, String tamanhoMemoria, String frequencia, boolean existe, String status, String tecnico, LocalDate dataTroca, String intercorrencia, List<String> antes, List<String> depois, Loja loja) {
         this.id = id;
         this.fabricante = fabricante;
